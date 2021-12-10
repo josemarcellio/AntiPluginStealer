@@ -1,0 +1,7 @@
+name: AntiPluginStealer
+version: 1.0
+main: com.josemarcellio.antipluginstealer.Main
+depend: [ProtocolLib]
+authors: [JoseMarcellio]
+description: Simple Anti Plugin Stealer
+load: POSTWORLD

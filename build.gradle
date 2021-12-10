@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.0'
+    id "com.github.johnrengelman.shadow" version "4.0.2"
+}
+
+group 'com.josemarcellio.antipluginstealer'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url ("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") }
+    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/"}
+}
+
+dependencies {
+    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
+    compileOnly("com.comphenix.protocol:ProtocolLib:4.7.0")
+}
+
+tasks {
+    jar {
+        dependsOn("shadowJar")
+        enabled = false
+    }
+
+    shadowJar {
+        archiveClassifier.set("")
+        relocate("kotlin", "com.josemarcellio.kotlin")
+    }
+
+    compileJava {
+        options.encoding = "UTF-8"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
